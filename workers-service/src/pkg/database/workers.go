@@ -38,7 +38,7 @@ func GetWorkers() ([]models.Worker, error) {
 	return workers, nil
 }
 
-func SaveUser(name, email, number string) error {
+func SaveWorker(name, email, number string) error {
 	query := "INSERT INTO workers (name, email, number) VALUES($1, $2, $3)"
 
 	_, err := DB.Query(query, name, email, number)
