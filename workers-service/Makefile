@@ -4,3 +4,4 @@ run :
 
 test :
 	go test src/pkg/tests/workers_test.go -v
+
