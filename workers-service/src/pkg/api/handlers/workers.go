@@ -7,13 +7,13 @@ import (
 )
 
 func HandleGetWorkers(c *gin.Context) {
-	users, err := database.GetWorkers()
+	workers, err := database.GetWorkers()
 	if err != nil {
 		c.String(500, "smth went wrong: %c", err)
 	}
 
 	c.JSON(200, gin.H{
-		"users": users,
+		"workers": workers,
 	})
 }
 
@@ -21,9 +21,9 @@ func HandleCreateWorker(c *gin.Context) {
 	var user models.BindWorker
 	c.BindJSON(&user)
 
-	database.SaveUser(user.Name, user.Email, user.Number)
+	database.SaveWorker(user.Name, user.Email, user.Number)
 
-	c.JSON(200, gin.H{
-		"status": "success",
+	c.JSON(202, gin.H{
+		"status": "created",
 	})
 }
