@@ -26,3 +26,30 @@ func HandleGetProducts(c *gin.Context) {
 		"products": products,
 	})
 }
+
+func HandleUpdateProduct(c *gin.Context) {
+	var p models.BindProduct
+	id := c.Param("id")
+
+	if err := c.BindJSON(&p); err != nil {
+		c.String(500, "error binding product")
+	}
+
+	if err := database.UpdateProduct(id, p.Title, p.Price, p.Description); err != nil {
+		c.String(400, "error updating product: %c", err)
+	} else {
+		c.JSON(200, gin.H{
+			"product": "updated",
+		})
+	}
+}
+
+func HandleDeleteProduct(c *gin.Context) {
+	id := c.Param("id")
+
+	if err := database.DeleteProduct(id); err != nil {
+		c.String(500, "error deleting product %c", err)
+	} else {
+		c.String(204, "deleted")
+	}
+}
