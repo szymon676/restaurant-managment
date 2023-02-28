@@ -17,6 +17,8 @@ func SetupRoutes() {
 	// ! setup routes
 	r.POST("/workers", api.HandleCreateWorker)
 	r.GET("/workers", api.HandleGetWorkers)
-
+	r.PUT("/workers/:id", api.HandleUpdateWorker)
+	r.DELETE("/workers/:id", api.HandleDeleteWorker)
+	// ! run server
 	r.Run(":4000")
 }

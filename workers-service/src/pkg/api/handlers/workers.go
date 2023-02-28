@@ -27,3 +27,30 @@ func HandleCreateWorker(c *gin.Context) {
 		"status": "created",
 	})
 }
+
+func HandleUpdateWorker(c *gin.Context) {
+	var worker models.BindWorker
+	id := c.Param("id")
+
+	if err := c.BindJSON(&worker); err != nil {
+		c.String(500, "error binding worker: %c", err)
+	}
+
+	if err := database.UpdateWorker(id, worker.Name, worker.Email, worker.Number); err != nil {
+		c.String(400, "error updating worker: %c", err)
+	} else {
+		c.JSON(200, gin.H{
+			"user": "updated",
+		})
+	}
+}
+
+func HandleDeleteWorker(c *gin.Context) {
+	id := c.Param("id")
+
+	if err := database.DeleteUser(id); err != nil {
+		c.String(500, "error deleting worker: %c", err)
+	} else {
+		c.String(204, "deleted successfully")
+	}
+}
