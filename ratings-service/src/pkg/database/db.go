@@ -31,10 +31,10 @@ func ConnectDB() {
 	_, err = DB.Exec(`
         CREATE TABLE IF NOT EXISTS ratings (
             id SERIAL PRIMARY KEY,
-            stars FLOAT(3) UNIQUE,
-            comments TEXT UNIQUE,
-			username TEXT UNIQUE,
-			date DATE UNIQUE
+            stars FLOAT(3),
+            comment TEXT,
+			username TEXT,
+			date DATE
 		);
     `)
 

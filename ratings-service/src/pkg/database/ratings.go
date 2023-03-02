@@ -1,6 +1,8 @@
 package database
 
 import (
+	"time"
+
 	"github.com/fatih/color"
 	"github.com/szymon676/ratings-service/src/pkg/models"
 )
@@ -36,4 +38,24 @@ func GetRatings() ([]models.Rating, error) {
 	}
 
 	return ratings, nil
+}
+
+func SaveRating(stars float64, user, comment string, date time.Time) error {
+	query := "INSERT INTO ratings (stars, username, comment, date) VALUES($1, $2, $3, $4)"
+
+	_, err := DB.Query(query, stars, user, comment, date)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func DeleteRating(id string) error {
+	query := "DELETE FROM ratings WHERE id = $1"
+	_, err := DB.Exec(query, id)
+
+	if err != nil {
+		return err
+	}
+	return nil
 }

@@ -15,7 +15,9 @@ func SetupRoutes() {
 	r := gin.Default()
 
 	// ! setup routes
+	r.POST("/ratings", handlers.HandleSaveRatings)
 	r.GET("/ratings", handlers.HandleGetRatings)
+	r.DELETE("/ratings/:id", handlers.HandleDeleteRating)
 
 	// ? run server
 	r.Run(":4002")
