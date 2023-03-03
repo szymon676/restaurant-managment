@@ -1,7 +1,6 @@
 run : 
-	go build -o src/cmd/bin/main.exe src/cmd/main.go 
-	src/cmd/bin/main.exe
+	go build -o cmd/bin/main.exe cmd/main.go 
+	cmd/bin/main.exe
 
 test :
-	go test src/pkg/tests/workers_test.go -v
-
+	go test tests/workers_test.go -v
