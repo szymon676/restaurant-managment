@@ -68,3 +68,25 @@ func TestGetRatings(t *testing.T) {
 		t.Fatalf("expected few ratings got 0")
 	}
 }
+
+func TestDeleteRating(t *testing.T) {
+	gin.SetMode(gin.TestMode)
+
+	req, err := http.NewRequest("DELETE", "/ratings/2", nil)
+	if err != nil {
+		t.Fatalf("Unable to delete rating: %v", err)
+	}
+
+	rec := httptest.NewRecorder()
+	c, _ := gin.CreateTestContext(rec)
+	c.Request = req
+
+	handlers.HandleDeleteRating(c)
+	if rec.Code != 204 {
+		t.Fatalf("wrong status expected: %d got: %d", 204, rec.Code)
+	}
+
+	if rec.Body.Len() > 0 {
+		t.Fatalf("expected nothing")
+	}
+}
