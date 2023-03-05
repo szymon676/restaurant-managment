@@ -14,4 +14,7 @@ func SetupRoutes() {
 	r := gin.Default()
 
 	r.POST("/orders", handlers.HandleCreateOrder)
+	r.GET("/orders", handlers.HandleGetOrders)
+
+	r.Run(":4003")
 }

@@ -62,7 +62,7 @@ func TestGetOrders(t *testing.T) {
 	c, _ := gin.CreateTestContext(rec)
 	c.Request = req
 
-	handlers.HandleCreateOrder(c)
+	handlers.HandleGetOrders(c)
 
 	if rec.Code != http.StatusOK {
 		t.Fatalf("wrong status code returned: %d wanted %d", rec.Code, http.StatusOK)
