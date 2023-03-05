@@ -68,3 +68,23 @@ func TestGetOrders(t *testing.T) {
 		t.Fatalf("wrong status code returned: %d wanted %d", rec.Code, http.StatusOK)
 	}
 }
+
+func TestDeleteOrder(t *testing.T) {
+	gin.SetMode(gin.TestMode)
+
+	req, err := http.NewRequest("DELETE", "/orders/14", nil)
+
+	if err != nil {
+		t.Fatalf("error creating request: %v", err)
+	}
+
+	rec := httptest.NewRecorder()
+	c, _ := gin.CreateTestContext(rec)
+	c.Request = req
+
+	handlers.HandleDeleteOrder(c)
+
+	if rec.Code != 204 {
+		t.Fatalf("wrong status code returned: %d wanted %d", rec.Code, 204)
+	}
+}

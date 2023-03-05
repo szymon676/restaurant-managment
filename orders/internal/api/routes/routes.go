@@ -15,6 +15,7 @@ func SetupRoutes() {
 
 	r.POST("/orders", handlers.HandleCreateOrder)
 	r.GET("/orders", handlers.HandleGetOrders)
+	r.DELETE("/orders/:id", handlers.HandleDeleteOrder)
 
 	r.Run(":4003")
 }
