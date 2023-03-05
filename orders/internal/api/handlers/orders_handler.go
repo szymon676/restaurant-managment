@@ -20,4 +20,12 @@ func HandleCreateOrder(c *gin.Context) {
 	c.String(202, "success")
 }
 
-func HandleGetOrders(c *gin.Context) {}
+func HandleGetOrders(c *gin.Context) {
+	if result, err := database.GetOrders(); err != nil {
+		c.String(500, "error getting orders")
+	} else {
+		c.JSON(200, gin.H{
+			"orders": result,
+		})
+	}
+}
