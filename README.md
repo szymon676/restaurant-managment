@@ -34,6 +34,17 @@ The microservice is implemented in the ratings directory. The cmd directory cont
 
 The microservice is implemented in the workers directory. The cmd directory contains the main application code, and the internal directory contains the implementation details.
 
+
+# Orders Microservice
+
+## The orders microservice manages orders data. It provides the following endpoints:
+
+- GET /orders - retrieves all orders
+- POST /orders - creates a new order
+- DELETE /orders/{id} - deletes a order by ID
+
+The microservice is implemented in the orders directory. The cmd directory contains the main application code, and the internal directory contains the implementation details.
+
 # Running the Microservices
 ## To run each microservice, navigate to its directory and run the following commands:
 
