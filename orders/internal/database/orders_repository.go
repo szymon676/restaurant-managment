@@ -48,3 +48,12 @@ func CreateOrder(product string, table int) error {
 
 	return nil
 }
+
+func DeleteOrder(id string) error {
+	query := "DELETE FROM orders WHERE id = $1"
+	_, err := DB.Exec(query, id)
+	if err != nil {
+		return err
+	}
+	return nil
+}

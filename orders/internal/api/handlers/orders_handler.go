@@ -29,3 +29,13 @@ func HandleGetOrders(c *gin.Context) {
 		})
 	}
 }
+
+func HandleDeleteOrder(c *gin.Context) {
+	id := c.Param("id")
+
+	if err := database.DeleteOrder(id); err != nil {
+		c.String(500, "error deleting order")
+	} else {
+		c.String(204, "success")
+	}
+}

@@ -3,4 +3,4 @@ run :
 	cmd/bin/main.exe
 
 test :
-	go test tests/products_test.go -v
+	go test ./tests -v
