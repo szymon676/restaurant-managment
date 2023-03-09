@@ -10,7 +10,7 @@ func HandleCreateOrder(c *gin.Context) {
 	var order models.BindOrder
 
 	if err := c.BindJSON(&order); err != nil {
-		c.String(402, "error binding order %c", err)
+		c.String(400, "error binding order %c", err)
 	}
 
 	if err := database.CreateOrder(order.Product, order.Table); err != nil {
@@ -32,10 +32,9 @@ func HandleGetOrders(c *gin.Context) {
 
 func HandleDeleteOrder(c *gin.Context) {
 	id := c.Param("id")
-
 	if err := database.DeleteOrder(id); err != nil {
-		c.String(500, "error deleting order")
+		c.String(500, "error deleting order", err)
 	} else {
-		c.String(204, "success")
+		c.String(200, "success")
 	}
 }
