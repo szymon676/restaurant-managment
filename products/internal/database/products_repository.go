@@ -17,8 +17,7 @@ func SaveProduct(title string, price float64, desc string) error {
 	return nil
 }
 
-func GetProducts() (
-	[]models.Product, error) {
+func GetProducts() ([]models.Product, error) {
 	query := "SELECT * FROM products"
 
 	rows, err := DB.Query(query)
