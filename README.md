@@ -1,6 +1,6 @@
 # Restaurant managment
 
-## This project contains three microservices for managing products, ratings, and workers. Each microservice provides CRUD operations through a RESTful API.
+## This project contains four microservices for managing products, ratings,orders and workers. Each microservice provides CRUD operations through a RESTful API.
 
 # Products Microservice
 
